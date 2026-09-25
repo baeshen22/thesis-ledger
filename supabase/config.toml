@@ -1,0 +1,5 @@
+# Minimal Supabase CLI config, used by the deploy workflow.
+project_id = "thesis-ledger"
+
+[functions.refresh-market]
+verify_jwt = false
