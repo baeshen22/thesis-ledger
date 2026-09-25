@@ -1,0 +1,2057 @@
+{
+ "settings": {
+  "main": {
+   "fx": 3.75,
+   "display": "SAR",
+   "cash": 12000,
+   "contribMin": 3000,
+   "contribMax": 5000,
+   "contribDay": 1,
+   "ytdStart": 80000,
+   "ytdContrib": 12000,
+   "hurdle": 15,
+   "minCagr": 8,
+   "maxWeight": 20,
+   "approachPct": 5,
+   "benchmark": "S&P 500",
+   "benchmarkYtd": 14.2,
+   "taxEnabled": false,
+   "taxShort": 0,
+   "taxLong": 0,
+   "notify": {
+    "inapp": true,
+    "push": false,
+    "email": false
+   },
+   "marketNotes": "Example notes. SAR is pegged at 3.75, so USD holdings carry little currency risk.\nAI capex guidance from hyperscalers drives APP, MSFT, APLD and CRWV sentiment together.\nDefense budgets matter for PL and VOYG.",
+   "example": true
+  }
+ },
+ "positions": {
+  "PL": {
+   "ticker": "PL",
+   "company": "Planet Labs",
+   "currency": "USD",
+   "price": 13.8,
+   "prevClose": 14.35,
+   "priceAt": "2026-09-25",
+   "classifications": [
+    "SECULAR GROWTH",
+    "ASYMMETRIC OPPORTUNITY"
+   ],
+   "conviction": "HIGH",
+   "thesisStatus": "STRENGTHENING",
+   "themes": [
+    "Space",
+    "Defense"
+   ],
+   "thesis": {
+    "summary": "Geospatial intelligence + defense growth + recurring satellite data. Planet owns the largest daily Earth-imaging archive, and defense and civil government demand is turning it into a recurring data platform.",
+    "whyOwn": "Geospatial intelligence + defense + proprietary Earth data",
+    "holdingPeriod": "5 years",
+    "expRevGrowth": ">25% a year",
+    "expEarnGrowth": "FCF positive by FY2027, expanding after",
+    "catalysts": "Pelican constellation deployment; large defense contracts; adjusted EBITDA profitability",
+    "expValuation": "About 6x forward sales now; 4x at maturity is fine if FCF margins reach 20%",
+    "v1y": 24,
+    "v3y": 48,
+    "v5y": 70,
+    "bull": "$110: the default geospatial data layer for allied defense",
+    "base": "$70: 25% revenue CAGR and a 20% FCF margin by year 5",
+    "bear": "$8: Pelican delays, dilution and budget cuts",
+    "expectedReturn": "About 33% a year over 5 years in the base case",
+    "wrongReason": "Government budgets are lumpy, and a competitor or in-house defense capability could commoditise imagery.",
+    "sellReason": "Revenue growth below 20%, Pelican program failure, or defense contracts not renewed.",
+    "intendedSell": "Review at $35; hold longer if the platform thesis is still compounding."
+   },
+   "plan": {
+    "addBelow": 14,
+    "strongBuy": 12,
+    "stopAddingAbove": 22,
+    "reviewPrice": 35,
+    "originalTarget": 35,
+    "targetWeight": 12,
+    "maxWeight": 16,
+    "minCagr": 12,
+    "nextReview": "2027-03-31",
+    "sellIfText": "Revenue growth <20% OR major defense thesis deterioration"
+   },
+   "model": {
+    "fairValue": 24,
+    "v3y": 48,
+    "v5y": 70
+   },
+   "nextCatalyst": {
+    "label": "Q3 earnings",
+    "date": "2026-10-13"
+   },
+   "expectations": [
+    {
+     "id": "e1",
+     "label": "Revenue growth",
+     "metric": "revGrowth",
+     "op": ">",
+     "value": 25
+    },
+    {
+     "id": "e2",
+     "label": "Margin improvement (gross margin)",
+     "metric": "grossMargin",
+     "op": ">",
+     "value": 55
+    },
+    {
+     "id": "e3",
+     "label": "Dilution under control",
+     "metric": "dilution",
+     "op": "<",
+     "value": 5
+    },
+    {
+     "id": "e4",
+     "label": "Pelican execution successful",
+     "metric": null,
+     "manual": "met"
+    },
+    {
+     "id": "e5",
+     "label": "Defense exposure increasing",
+     "metric": null,
+     "manual": "met"
+    }
+   ],
+   "conditions": [
+    {
+     "id": "c1",
+     "type": "exit",
+     "category": "FAILURE",
+     "label": "PL revenue growth falls below 20%",
+     "metric": "revGrowth",
+     "op": "<",
+     "value": 20,
+     "action": "REVIEW"
+    },
+    {
+     "id": "c2",
+     "type": "add",
+     "category": "ADD",
+     "label": "Add below $14 if revenue estimates are unchanged",
+     "metric": "price",
+     "op": "<",
+     "value": 14,
+     "and": {
+      "metric": "revEstChg",
+      "op": ">=",
+      "value": -2
+     },
+     "action": "ADD"
+    }
+   ],
+   "baseline": {
+    "date": "2025-11-14",
+    "price": 16.72,
+    "revEst": 330,
+    "epsEst": -0.05,
+    "analystTarget": 26,
+    "backlog": 680,
+    "shares": 300
+   },
+   "example": true
+  },
+  "APP": {
+   "ticker": "APP",
+   "company": "AppLovin",
+   "currency": "USD",
+   "price": 505,
+   "prevClose": 492.3,
+   "priceAt": "2026-09-25",
+   "classifications": [
+    "CORE COMPOUNDER",
+    "SECULAR GROWTH"
+   ],
+   "conviction": "HIGH",
+   "thesisStatus": "STRENGTHENING",
+   "themes": [
+    "AI",
+    "Ad tech"
+   ],
+   "thesis": {
+    "summary": "AI-driven ad engine (AXON) compounding at high incremental margins, with e-commerce advertisers extending growth beyond mobile gaming.",
+    "whyOwn": "AI ad engine / e-commerce expansion / high-margin FCF",
+    "holdingPeriod": "3\u20135 years",
+    "expRevGrowth": ">25% a year",
+    "expEarnGrowth": "EPS growing faster than revenue on operating leverage",
+    "catalysts": "E-commerce self-serve launch; S&P 500 inclusion; buybacks",
+    "expValuation": "25\u201330x forward FCF",
+    "v1y": 420,
+    "v3y": 700,
+    "v5y": 950,
+    "bull": "$1,200: e-commerce becomes as large as gaming",
+    "base": "$950: 25% EPS CAGR",
+    "bear": "$180: ad-tech regulation or a platform policy change",
+    "expectedReturn": "About 25% a year",
+    "wrongReason": "Platform dependence on app stores; regulatory scrutiny of ad targeting.",
+    "sellReason": "Revenue growth below 20%, or valuation above 40x forward FCF without estimate upgrades.",
+    "intendedSell": "Review at $500."
+   },
+   "plan": {
+    "addBelow": 290,
+    "strongBuy": 250,
+    "reviewPrice": 500,
+    "originalTarget": 500,
+    "targetWeight": 15,
+    "maxWeight": 25,
+    "nextReview": "2027-02-15"
+   },
+   "model": {
+    "fairValue": 620,
+    "v3y": 780,
+    "v5y": 1050
+   },
+   "nextCatalyst": {
+    "label": "Q3 earnings",
+    "date": "2026-11-05"
+   },
+   "expectations": [
+    {
+     "id": "e1",
+     "label": "Revenue growth",
+     "metric": "revGrowth",
+     "op": ">",
+     "value": 25
+    },
+    {
+     "id": "e2",
+     "label": "EPS estimates rising",
+     "metric": "epsEstChg",
+     "op": ">",
+     "value": 0
+    },
+    {
+     "id": "e3",
+     "label": "Gross margin stays high",
+     "metric": "grossMargin",
+     "op": ">",
+     "value": 70
+    }
+   ],
+   "conditions": [
+    {
+     "id": "c1",
+     "type": "exit",
+     "category": "VALUATION",
+     "label": "Reduce if valuation exceeds 40x forward FCF",
+     "metric": "fwdFcfMult",
+     "op": ">",
+     "value": 40,
+     "action": "TRIM"
+    },
+    {
+     "id": "c2",
+     "type": "exit",
+     "category": "FAILURE",
+     "label": "APP revenue growth falls below 20%",
+     "metric": "revGrowth",
+     "op": "<",
+     "value": 20,
+     "action": "REVIEW"
+    },
+    {
+     "id": "c3",
+     "type": "exit",
+     "category": "VALUATION",
+     "label": "APP reaches $500 without corresponding earnings upgrades",
+     "metric": "price",
+     "op": ">=",
+     "value": 500,
+     "and": {
+      "metric": "epsEstChg",
+      "op": "<",
+      "value": 10
+     },
+     "action": "TRIM"
+    }
+   ],
+   "baseline": {
+    "date": "2025-06-10",
+    "price": 313,
+    "revEst": 5600,
+    "epsEst": 9.8,
+    "analystTarget": 420,
+    "shares": 340
+   },
+   "example": true
+  },
+  "VOYG": {
+   "ticker": "VOYG",
+   "company": "Voyager Technologies",
+   "currency": "USD",
+   "price": 22.4,
+   "prevClose": 23.1,
+   "priceAt": "2026-09-25",
+   "classifications": [
+    "SPECULATIVE",
+    "THEMATIC"
+   ],
+   "conviction": "MEDIUM",
+   "thesisStatus": "WEAKENING",
+   "themes": [
+    "Space",
+    "Defense"
+   ],
+   "thesis": {
+    "summary": "Commercial space station (Starlab) plus defense technology, with a growing contracted backlog that gives revenue visibility.",
+    "whyOwn": "Space infrastructure / defense backlog",
+    "holdingPeriod": "3\u20135 years",
+    "expRevGrowth": ">20% a year",
+    "catalysts": "Starlab milestones; NASA commercial LEO awards; defense contract wins",
+    "v1y": 38,
+    "v3y": 55,
+    "v5y": 80,
+    "base": "$80 if Starlab is funded and backlog converts",
+    "bear": "$10 if Starlab slips and backlog shrinks",
+    "wrongReason": "NASA budget cuts or Starlab delays could hollow out the backlog.",
+    "sellReason": "Backlog falls by more than 20%.",
+    "intendedSell": "Review at $60."
+   },
+   "plan": {
+    "addBelow": 20,
+    "reviewPrice": 60,
+    "originalTarget": 60,
+    "targetWeight": 4,
+    "maxWeight": 8
+   },
+   "model": {
+    "fairValue": 28,
+    "v3y": 55,
+    "v5y": 80
+   },
+   "nextCatalyst": {
+    "label": "Q3 earnings",
+    "date": "2026-11-12"
+   },
+   "expectations": [
+    {
+     "id": "e1",
+     "label": "Revenue growth",
+     "metric": "revGrowth",
+     "op": ">",
+     "value": 20
+    },
+    {
+     "id": "e2",
+     "label": "Backlog growing",
+     "metric": "backlogChg",
+     "op": ">",
+     "value": 0
+    }
+   ],
+   "conditions": [
+    {
+     "id": "c1",
+     "type": "exit",
+     "category": "FAILURE",
+     "label": "VOYG backlog falls by more than 20%",
+     "metric": "backlogChg",
+     "op": "<",
+     "value": -20,
+     "action": "REVIEW"
+    },
+    {
+     "id": "c2",
+     "type": "exit",
+     "category": "FAILURE",
+     "label": "VOYG revenue growth falls below 10%",
+     "metric": "revGrowth",
+     "op": "<",
+     "value": 10,
+     "action": "REVIEW"
+    }
+   ],
+   "baseline": {
+    "date": "2025-09-12",
+    "price": 30.93,
+    "revEst": 180,
+    "backlog": 310,
+    "shares": 57
+   },
+   "example": true
+  },
+  "MSFT": {
+   "ticker": "MSFT",
+   "company": "Microsoft",
+   "currency": "USD",
+   "price": 471,
+   "prevClose": 478.2,
+   "priceAt": "2026-09-25",
+   "classifications": [
+    "CORE COMPOUNDER"
+   ],
+   "conviction": "HIGH",
+   "thesisStatus": "INTACT",
+   "themes": [
+    "AI",
+    "Cloud"
+   ],
+   "thesis": {
+    "summary": "Azure plus Copilot monetise AI across the largest enterprise installed base; durable double-digit earnings growth with low risk.",
+    "whyOwn": "Enterprise AI + Azure + durable compounding",
+    "holdingPeriod": "10 years",
+    "expRevGrowth": "12\u201315% a year",
+    "expEarnGrowth": "Mid-teens EPS growth",
+    "v3y": 680,
+    "v5y": 850,
+    "wrongReason": "AI capex does not earn its cost of capital.",
+    "sellReason": "Azure growth below 15% for two quarters."
+   },
+   "plan": {
+    "addBelow": 450,
+    "strongBuy": 400,
+    "reviewPrice": 650,
+    "originalTarget": 650,
+    "targetWeight": 15,
+    "maxWeight": 20
+   },
+   "model": {
+    "fairValue": 560,
+    "v3y": 680,
+    "v5y": 850
+   },
+   "nextCatalyst": {
+    "label": "FQ1 earnings",
+    "date": "2026-10-28"
+   },
+   "expectations": [
+    {
+     "id": "e1",
+     "label": "Revenue growth",
+     "metric": "revGrowth",
+     "op": ">=",
+     "value": 12
+    }
+   ],
+   "conditions": [
+    {
+     "id": "c1",
+     "type": "exit",
+     "category": "FAILURE",
+     "label": "MSFT revenue growth falls below 10%",
+     "metric": "revGrowth",
+     "op": "<",
+     "value": 10,
+     "action": "REVIEW"
+    }
+   ],
+   "baseline": {
+    "date": "2025-08-01",
+    "price": 410,
+    "revEst": 318000,
+    "epsEst": 15.2,
+    "analystTarget": 520,
+    "shares": 7430
+   },
+   "example": true
+  },
+  "SPUS": {
+   "ticker": "SPUS",
+   "company": "SP Funds S&P 500 Sharia Industry Exclusions ETF",
+   "currency": "USD",
+   "price": 49.1,
+   "prevClose": 48.95,
+   "priceAt": "2026-09-25",
+   "classifications": [
+    "CORE COMPOUNDER"
+   ],
+   "conviction": "HIGH",
+   "thesisStatus": "INTACT",
+   "themes": [
+    "US large cap"
+   ],
+   "thesis": {
+    "summary": "Sharia-compliant core exposure to US large caps; the default home for monthly contributions when no single stock meets its buy conditions.",
+    "whyOwn": "Core index exposure / default for new money",
+    "holdingPeriod": "Indefinite",
+    "expectedReturn": "8\u201310% a year",
+    "v3y": 65.3,
+    "v5y": 79,
+    "sellReason": "Only for rebalancing or liquidity."
+   },
+   "plan": {
+    "targetWeight": 25,
+    "maxWeight": 35,
+    "minCagr": 6,
+    "hurdle": 8
+   },
+   "model": {
+    "fairValue": 49,
+    "v3y": 65.3,
+    "v5y": 79
+   },
+   "expectations": [],
+   "conditions": [
+    {
+     "id": "c1",
+     "type": "exit",
+     "category": "LIQUIDITY",
+     "label": "Personal liquidity need flagged",
+     "metric": "custom:liquidity_need",
+     "op": ">=",
+     "value": 1,
+     "action": "TRIM"
+    }
+   ],
+   "baseline": {
+    "date": "2025-01-05",
+    "price": 42.0
+   },
+   "example": true
+  },
+  "RKLB": {
+   "ticker": "RKLB",
+   "company": "Rocket Lab",
+   "currency": "USD",
+   "price": 52.0,
+   "prevClose": 50.4,
+   "priceAt": "2026-09-25",
+   "themes": [
+    "Space"
+   ],
+   "example": true
+  }
+ },
+ "watchlist": {
+  "APLD": {
+   "ticker": "APLD",
+   "company": "Applied Digital",
+   "currency": "USD",
+   "price": 26.9,
+   "prevClose": 27.4,
+   "addedAt": "2026-03-25",
+   "priceAdded": 26.89,
+   "buyBelow": 23,
+   "strongBuy": 20,
+   "maxPosition": 3,
+   "whyWant": "AI data-center infrastructure; power-constrained locations; long-duration hyperscaler contracts; potential NOI growth",
+   "thesis": "Owns powered land and is signing 15-year leases with investment-grade hyperscalers; NOI could compound as capacity comes online.",
+   "whyNotYet": "Valuation; debt; construction execution; waiting for a better margin of safety",
+   "holdingPeriod": "3\u20135 years",
+   "conviction": "MEDIUM",
+   "quality": "MEDIUM",
+   "thesisStatus": "INTACT",
+   "themes": [
+    "AI",
+    "Data centers"
+   ],
+   "analystTarget1y": 34,
+   "model3y": 60,
+   "model5y": 85,
+   "valuationNote": "About 12x 2028 NOI at $23",
+   "nextCatalyst": {
+    "label": "FQ1 earnings",
+    "date": "2026-10-09"
+   },
+   "baseline": {
+    "date": "2026-03-25",
+    "price": 26.89,
+    "revEst": 310,
+    "epsEst": -0.4,
+    "analystTarget": 32,
+    "shares": 280,
+    "netDebt": 1350
+   },
+   "example": true
+  },
+  "CRWV": {
+   "ticker": "CRWV",
+   "company": "CoreWeave",
+   "currency": "USD",
+   "price": 87.7,
+   "prevClose": 85.1,
+   "addedAt": "2026-05-02",
+   "priceAdded": 95,
+   "buyBelow": 75,
+   "strongBuy": 65,
+   "maxPosition": 4,
+   "whyWant": "GPU cloud capacity leader with contracted backlog from hyperscalers and AI labs",
+   "whyNotYet": "Customer concentration; capex funded by debt",
+   "holdingPeriod": "3 years",
+   "conviction": "MEDIUM",
+   "quality": "MEDIUM",
+   "thesisStatus": "INTACT",
+   "themes": [
+    "AI",
+    "Data centers"
+   ],
+   "analystTarget1y": 120,
+   "model3y": 170,
+   "model5y": 240,
+   "nextCatalyst": {
+    "label": "Q3 earnings",
+    "date": "2026-11-11"
+   },
+   "baseline": {
+    "date": "2026-05-02",
+    "price": 95,
+    "revEst": 9200,
+    "analystTarget": 115,
+    "shares": 480
+   },
+   "example": true
+  },
+  "NVDA": {
+   "ticker": "NVDA",
+   "company": "NVIDIA",
+   "currency": "USD",
+   "price": 176,
+   "prevClose": 179.4,
+   "addedAt": "2026-06-18",
+   "priceAdded": 188,
+   "buyBelow": 170,
+   "strongBuy": 150,
+   "maxPosition": 8,
+   "whyWant": "AI accelerator platform plus the CUDA software moat",
+   "whyNotYet": "Already have AI exposure through APP and MSFT; waiting for a pullback",
+   "holdingPeriod": "5 years",
+   "conviction": "HIGH",
+   "quality": "HIGH",
+   "thesisStatus": "INTACT",
+   "themes": [
+    "AI",
+    "Semiconductors"
+   ],
+   "analystTarget1y": 225,
+   "model3y": 290,
+   "model5y": 380,
+   "nextCatalyst": {
+    "label": "Q3 FY27 earnings",
+    "date": "2026-11-19"
+   },
+   "baseline": {
+    "date": "2026-06-18",
+    "price": 188,
+    "revEst": 252000,
+    "epsEst": 5.8,
+    "analystTarget": 215,
+    "shares": 24500
+   },
+   "example": true
+  },
+  "ASTS": {
+   "ticker": "ASTS",
+   "company": "AST SpaceMobile",
+   "currency": "USD",
+   "price": 58,
+   "prevClose": 56.2,
+   "addedAt": "2026-02-10",
+   "priceAdded": 38,
+   "buyBelow": 30,
+   "strongBuy": 25,
+   "maxPosition": 3,
+   "whyWant": "Direct-to-cell satellite broadband with carrier partners",
+   "whyNotYet": "Pre-revenue; launch cadence risk; dilution",
+   "holdingPeriod": "5 years",
+   "conviction": "LOW",
+   "quality": "LOW",
+   "thesisStatus": "INTACT",
+   "themes": [
+    "Space"
+   ],
+   "analystTarget1y": 64,
+   "model3y": 70,
+   "model5y": 110,
+   "baseline": {
+    "date": "2026-02-10",
+    "price": 38,
+    "analystTarget": 45,
+    "shares": 310
+   },
+   "example": true
+  }
+ },
+ "transactions": {
+  "ex-t1": {
+   "ticker": "SPUS",
+   "side": "BUY",
+   "date": "2025-01-05",
+   "shares": 40,
+   "price": 42.0,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 8,
+   "note": "Core position, first contribution",
+   "reason": "",
+   "example": true
+  },
+  "ex-t2": {
+   "ticker": "APP",
+   "side": "BUY",
+   "date": "2025-06-10",
+   "shares": 12,
+   "price": 313,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 15,
+   "note": "AXON 2.0 + e-commerce optionality",
+   "reason": "",
+   "example": true
+  },
+  "ex-t3": {
+   "ticker": "SPUS",
+   "side": "BUY",
+   "date": "2025-07-01",
+   "shares": 40,
+   "price": 44.6,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 14,
+   "note": "Monthly contribution",
+   "reason": "",
+   "example": true
+  },
+  "ex-t4": {
+   "ticker": "MSFT",
+   "side": "BUY",
+   "date": "2025-08-01",
+   "shares": 8,
+   "price": 410,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 12,
+   "note": "Core compounder at a fair price",
+   "reason": "",
+   "example": true
+  },
+  "ex-t5": {
+   "ticker": "VOYG",
+   "side": "BUY",
+   "date": "2025-09-12",
+   "shares": 80,
+   "price": 30.93,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 5,
+   "note": "Post-IPO entry; Starlab and backlog",
+   "reason": "",
+   "example": true
+  },
+  "ex-t6": {
+   "ticker": "RKLB",
+   "side": "BUY",
+   "date": "2025-10-02",
+   "shares": 60,
+   "price": 38.5,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 7,
+   "note": "",
+   "reason": "",
+   "example": true
+  },
+  "ex-t7": {
+   "ticker": "PL",
+   "side": "BUY",
+   "date": "2025-11-14",
+   "shares": 200,
+   "price": 16.72,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 8,
+   "note": "Defense demand + Pelican",
+   "reason": "",
+   "example": true
+  },
+  "ex-t8": {
+   "ticker": "SPUS",
+   "side": "BUY",
+   "date": "2026-01-04",
+   "shares": 40,
+   "price": 46.0,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": 21,
+   "note": "Monthly contribution",
+   "reason": "",
+   "example": true
+  },
+  "ex-t9": {
+   "ticker": "SOFI",
+   "side": "BUY",
+   "date": "2024-11-01",
+   "shares": 200,
+   "price": 9.8,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": null,
+   "note": "Bank charter + member growth",
+   "reason": "",
+   "example": true
+  },
+  "ex-t10": {
+   "ticker": "SOFI",
+   "side": "SELL",
+   "date": "2025-03-10",
+   "shares": 200,
+   "price": 14.2,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": null,
+   "note": "Hit my first target",
+   "reason": "Price / valuation level",
+   "example": true
+  },
+  "ex-t11": {
+   "ticker": "LCID",
+   "side": "BUY",
+   "date": "2024-05-01",
+   "shares": 300,
+   "price": 3.6,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": null,
+   "note": "EV turnaround story",
+   "reason": "",
+   "example": true
+  },
+  "ex-t12": {
+   "ticker": "LCID",
+   "side": "BUY",
+   "date": "2024-09-01",
+   "shares": 300,
+   "price": 2.6,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": null,
+   "note": "Averaging down",
+   "reason": "",
+   "example": true
+  },
+  "ex-t13": {
+   "ticker": "LCID",
+   "side": "SELL",
+   "date": "2025-06-15",
+   "shares": 600,
+   "price": 2.3,
+   "fees": 0,
+   "currency": "USD",
+   "weightAfter": null,
+   "note": "Finally gave up",
+   "reason": "Thesis failure",
+   "example": true
+  }
+ },
+ "fundamentals": {
+  "PL": {
+   "ticker": "PL",
+   "asOf": "2026-09-10",
+   "revGrowth": 31,
+   "grossMargin": 58,
+   "marginTrend": "Improving",
+   "revEst": 334,
+   "epsEst": 0.02,
+   "analystTarget": 33,
+   "backlog": 735,
+   "shares": 318,
+   "netDebt": -200,
+   "guidance": "Maintained",
+   "declineReason": "Sector",
+   "customerLoss": false,
+   "downgrades": false,
+   "high52": 19.4,
+   "notes": [
+    {
+     "date": "2026-09-10",
+     "text": "Q2: revenue +31% YoY, record backlog, Pelican on schedule. ATM dilution higher than expected."
+    }
+   ],
+   "example": true
+  },
+  "APP": {
+   "ticker": "APP",
+   "asOf": "2026-08-07",
+   "revGrowth": 38,
+   "grossMargin": 78,
+   "marginTrend": "Improving",
+   "revEst": 6608,
+   "epsEst": 12.15,
+   "analystTarget": 560,
+   "shares": 338,
+   "fwdPE": 32,
+   "fwdFcfMult": 30,
+   "guidance": "Raised",
+   "declineReason": "Market",
+   "customerLoss": false,
+   "downgrades": false,
+   "high52": 530,
+   "notes": [
+    {
+     "date": "2026-08-07",
+     "text": "Q2: e-commerce advertisers ramping; guidance raised again."
+    }
+   ],
+   "example": true
+  },
+  "VOYG": {
+   "ticker": "VOYG",
+   "asOf": "2026-08-14",
+   "revGrowth": 12,
+   "marginTrend": "Deteriorating",
+   "revEst": 168,
+   "backlog": 235.6,
+   "shares": 59,
+   "guidance": "Cut",
+   "declineReason": "Company-specific",
+   "customerLoss": false,
+   "downgrades": true,
+   "high52": 41,
+   "notes": [
+    {
+     "date": "2026-08-14",
+     "text": "Q2: backlog down 24% after a NASA award was deferred; FY guidance cut."
+    }
+   ],
+   "example": true
+  },
+  "MSFT": {
+   "ticker": "MSFT",
+   "asOf": "2026-07-29",
+   "revGrowth": 15,
+   "grossMargin": 69,
+   "marginTrend": "Stable",
+   "revEst": 330700,
+   "epsEst": 16.1,
+   "analystTarget": 590,
+   "shares": 7420,
+   "fwdPE": 29,
+   "guidance": "Maintained",
+   "declineReason": "Market",
+   "customerLoss": false,
+   "downgrades": false,
+   "high52": 555,
+   "example": true
+  },
+  "SPUS": {
+   "ticker": "SPUS",
+   "asOf": "2026-09-01",
+   "custom": {
+    "liquidity_need": 0
+   },
+   "example": true
+  },
+  "APLD": {
+   "ticker": "APLD",
+   "asOf": "2026-09-15",
+   "revGrowth": 45,
+   "revEst": 316,
+   "epsEst": -0.35,
+   "analystTarget": 34,
+   "shares": 285,
+   "netDebt": 1400,
+   "guidance": "Maintained",
+   "declineReason": "Sector",
+   "high52": 38,
+   "notes": [
+    {
+     "date": "2026-09-15",
+     "text": "Broad AI infrastructure sell-off; no company-specific news."
+    }
+   ],
+   "example": true
+  },
+  "CRWV": {
+   "ticker": "CRWV",
+   "asOf": "2026-08-20",
+   "revGrowth": 180,
+   "revEst": 9800,
+   "analystTarget": 120,
+   "shares": 495,
+   "guidance": "Raised",
+   "high52": 187,
+   "example": true
+  },
+  "NVDA": {
+   "ticker": "NVDA",
+   "asOf": "2026-08-28",
+   "revGrowth": 52,
+   "revEst": 265000,
+   "epsEst": 6.1,
+   "analystTarget": 225,
+   "shares": 24400,
+   "guidance": "Raised",
+   "declineReason": "Market",
+   "customerLoss": false,
+   "downgrades": false,
+   "high52": 212,
+   "example": true
+  },
+  "ASTS": {
+   "ticker": "ASTS",
+   "asOf": "2026-08-12",
+   "revEst": 190,
+   "analystTarget": 64,
+   "shares": 340,
+   "high52": 66,
+   "example": true
+  }
+ },
+ "history": {
+  "ex-h1": {
+   "ticker": "PL",
+   "at": "2025-11-14",
+   "ts": 0,
+   "kind": "THESIS",
+   "title": "Bought PL at $16.72",
+   "note": "5Y fair value assumption: $70.",
+   "changes": [],
+   "snapshot": {
+    "thesisStatus": "INTACT",
+    "conviction": "HIGH",
+    "classifications": [
+     "SECULAR GROWTH",
+     "ASYMMETRIC OPPORTUNITY"
+    ],
+    "thesis": {
+     "summary": "Geospatial intelligence + defense growth + recurring satellite data. Planet owns the largest daily Earth-imaging archive, and defense and civil government demand is turning it into a recurring data platform.",
+     "whyOwn": "Geospatial intelligence + defense + proprietary Earth data",
+     "holdingPeriod": "5 years",
+     "expRevGrowth": ">25% a year",
+     "expEarnGrowth": "FCF positive by FY2027, expanding after",
+     "catalysts": "Pelican constellation deployment; large defense contracts; adjusted EBITDA profitability",
+     "expValuation": "About 6x forward sales now; 4x at maturity is fine if FCF margins reach 20%",
+     "v1y": 24,
+     "v3y": 48,
+     "v5y": 70,
+     "bull": "$110: the default geospatial data layer for allied defense",
+     "base": "$70: 25% revenue CAGR and a 20% FCF margin by year 5",
+     "bear": "$8: Pelican delays, dilution and budget cuts",
+     "expectedReturn": "About 33% a year over 5 years in the base case",
+     "wrongReason": "Government budgets are lumpy, and a competitor or in-house defense capability could commoditise imagery.",
+     "sellReason": "Revenue growth below 20%, Pelican program failure, or defense contracts not renewed.",
+     "intendedSell": "Review at $35; hold longer if the platform thesis is still compounding."
+    },
+    "plan": {
+     "addBelow": 14,
+     "strongBuy": 12,
+     "stopAddingAbove": 22,
+     "reviewPrice": 35,
+     "originalTarget": 35,
+     "targetWeight": 12,
+     "maxWeight": 16,
+     "minCagr": 12,
+     "nextReview": "2027-03-31",
+     "sellIfText": "Revenue growth <20% OR major defense thesis deterioration"
+    },
+    "model": {
+     "fairValue": 22,
+     "v3y": 48,
+     "v5y": 70
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 25
+     },
+     {
+      "id": "e2",
+      "label": "Margin improvement (gross margin)",
+      "metric": "grossMargin",
+      "op": ">",
+      "value": 55
+     },
+     {
+      "id": "e3",
+      "label": "Dilution under control",
+      "metric": "dilution",
+      "op": "<",
+      "value": 5
+     },
+     {
+      "id": "e4",
+      "label": "Pelican execution successful",
+      "metric": null,
+      "manual": "met"
+     },
+     {
+      "id": "e5",
+      "label": "Defense exposure increasing",
+      "metric": null,
+      "manual": "met"
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "PL revenue growth falls below 20%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c2",
+      "type": "add",
+      "category": "ADD",
+      "label": "Add below $14 if revenue estimates are unchanged",
+      "metric": "price",
+      "op": "<",
+      "value": 14,
+      "and": {
+       "metric": "revEstChg",
+       "op": ">=",
+       "value": -2
+      },
+      "action": "ADD"
+     }
+    ],
+    "baseline": {
+     "date": "2025-11-14",
+     "price": 16.72,
+     "revEst": 330,
+     "epsEst": -0.05,
+     "analystTarget": 26,
+     "backlog": 680,
+     "shares": 300
+    }
+   },
+   "price": 16.72,
+   "example": true
+  },
+  "ex-h2": {
+   "ticker": "PL",
+   "at": "2026-03-12",
+   "ts": 0,
+   "kind": "REVISION",
+   "title": "Revenue exceeded expectations",
+   "note": "Raised 5Y model to $82.",
+   "changes": [
+    "Fair value $22 \u2192 $26",
+    "5Y model $70 \u2192 $82",
+    "Thesis INTACT \u2192 STRENGTHENING"
+   ],
+   "snapshot": {
+    "thesisStatus": "STRENGTHENING",
+    "conviction": "HIGH",
+    "classifications": [
+     "SECULAR GROWTH",
+     "ASYMMETRIC OPPORTUNITY"
+    ],
+    "thesis": {
+     "summary": "Geospatial intelligence + defense growth + recurring satellite data. Planet owns the largest daily Earth-imaging archive, and defense and civil government demand is turning it into a recurring data platform.",
+     "whyOwn": "Geospatial intelligence + defense + proprietary Earth data",
+     "holdingPeriod": "5 years",
+     "expRevGrowth": ">25% a year",
+     "expEarnGrowth": "FCF positive by FY2027, expanding after",
+     "catalysts": "Pelican constellation deployment; large defense contracts; adjusted EBITDA profitability",
+     "expValuation": "About 6x forward sales now; 4x at maturity is fine if FCF margins reach 20%",
+     "v1y": 24,
+     "v3y": 48,
+     "v5y": 70,
+     "bull": "$110: the default geospatial data layer for allied defense",
+     "base": "$70: 25% revenue CAGR and a 20% FCF margin by year 5",
+     "bear": "$8: Pelican delays, dilution and budget cuts",
+     "expectedReturn": "About 33% a year over 5 years in the base case",
+     "wrongReason": "Government budgets are lumpy, and a competitor or in-house defense capability could commoditise imagery.",
+     "sellReason": "Revenue growth below 20%, Pelican program failure, or defense contracts not renewed.",
+     "intendedSell": "Review at $35; hold longer if the platform thesis is still compounding."
+    },
+    "plan": {
+     "addBelow": 14,
+     "strongBuy": 12,
+     "stopAddingAbove": 22,
+     "reviewPrice": 35,
+     "originalTarget": 35,
+     "targetWeight": 12,
+     "maxWeight": 16,
+     "minCagr": 12,
+     "nextReview": "2027-03-31",
+     "sellIfText": "Revenue growth <20% OR major defense thesis deterioration"
+    },
+    "model": {
+     "fairValue": 26,
+     "v3y": 55,
+     "v5y": 82
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 25
+     },
+     {
+      "id": "e2",
+      "label": "Margin improvement (gross margin)",
+      "metric": "grossMargin",
+      "op": ">",
+      "value": 55
+     },
+     {
+      "id": "e3",
+      "label": "Dilution under control",
+      "metric": "dilution",
+      "op": "<",
+      "value": 5
+     },
+     {
+      "id": "e4",
+      "label": "Pelican execution successful",
+      "metric": null,
+      "manual": "met"
+     },
+     {
+      "id": "e5",
+      "label": "Defense exposure increasing",
+      "metric": null,
+      "manual": "met"
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "PL revenue growth falls below 20%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c2",
+      "type": "add",
+      "category": "ADD",
+      "label": "Add below $14 if revenue estimates are unchanged",
+      "metric": "price",
+      "op": "<",
+      "value": 14,
+      "and": {
+       "metric": "revEstChg",
+       "op": ">=",
+       "value": -2
+      },
+      "action": "ADD"
+     }
+    ],
+    "baseline": {
+     "date": "2025-11-14",
+     "price": 16.72,
+     "revEst": 330,
+     "epsEst": -0.05,
+     "analystTarget": 26,
+     "backlog": 680,
+     "shares": 300
+    }
+   },
+   "price": null,
+   "example": true
+  },
+  "ex-h3": {
+   "ticker": "PL",
+   "at": "2026-09-10",
+   "ts": 0,
+   "kind": "EARNINGS",
+   "title": "Margins good; dilution higher than expected",
+   "note": "Reduced 5Y model to $70. Conviction unchanged; Pelican on schedule.",
+   "changes": [
+    "Fair value $26 \u2192 $24",
+    "5Y model $82 \u2192 $70"
+   ],
+   "snapshot": {
+    "thesisStatus": "STRENGTHENING",
+    "conviction": "HIGH",
+    "classifications": [
+     "SECULAR GROWTH",
+     "ASYMMETRIC OPPORTUNITY"
+    ],
+    "thesis": {
+     "summary": "Geospatial intelligence + defense growth + recurring satellite data. Planet owns the largest daily Earth-imaging archive, and defense and civil government demand is turning it into a recurring data platform.",
+     "whyOwn": "Geospatial intelligence + defense + proprietary Earth data",
+     "holdingPeriod": "5 years",
+     "expRevGrowth": ">25% a year",
+     "expEarnGrowth": "FCF positive by FY2027, expanding after",
+     "catalysts": "Pelican constellation deployment; large defense contracts; adjusted EBITDA profitability",
+     "expValuation": "About 6x forward sales now; 4x at maturity is fine if FCF margins reach 20%",
+     "v1y": 24,
+     "v3y": 48,
+     "v5y": 70,
+     "bull": "$110: the default geospatial data layer for allied defense",
+     "base": "$70: 25% revenue CAGR and a 20% FCF margin by year 5",
+     "bear": "$8: Pelican delays, dilution and budget cuts",
+     "expectedReturn": "About 33% a year over 5 years in the base case",
+     "wrongReason": "Government budgets are lumpy, and a competitor or in-house defense capability could commoditise imagery.",
+     "sellReason": "Revenue growth below 20%, Pelican program failure, or defense contracts not renewed.",
+     "intendedSell": "Review at $35; hold longer if the platform thesis is still compounding."
+    },
+    "plan": {
+     "addBelow": 14,
+     "strongBuy": 12,
+     "stopAddingAbove": 22,
+     "reviewPrice": 35,
+     "originalTarget": 35,
+     "targetWeight": 12,
+     "maxWeight": 16,
+     "minCagr": 12,
+     "nextReview": "2027-03-31",
+     "sellIfText": "Revenue growth <20% OR major defense thesis deterioration"
+    },
+    "model": {
+     "fairValue": 24,
+     "v3y": 48,
+     "v5y": 70
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 25
+     },
+     {
+      "id": "e2",
+      "label": "Margin improvement (gross margin)",
+      "metric": "grossMargin",
+      "op": ">",
+      "value": 55
+     },
+     {
+      "id": "e3",
+      "label": "Dilution under control",
+      "metric": "dilution",
+      "op": "<",
+      "value": 5
+     },
+     {
+      "id": "e4",
+      "label": "Pelican execution successful",
+      "metric": null,
+      "manual": "met"
+     },
+     {
+      "id": "e5",
+      "label": "Defense exposure increasing",
+      "metric": null,
+      "manual": "met"
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "PL revenue growth falls below 20%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c2",
+      "type": "add",
+      "category": "ADD",
+      "label": "Add below $14 if revenue estimates are unchanged",
+      "metric": "price",
+      "op": "<",
+      "value": 14,
+      "and": {
+       "metric": "revEstChg",
+       "op": ">=",
+       "value": -2
+      },
+      "action": "ADD"
+     }
+    ],
+    "baseline": {
+     "date": "2025-11-14",
+     "price": 16.72,
+     "revEst": 330,
+     "epsEst": -0.05,
+     "analystTarget": 26,
+     "backlog": 680,
+     "shares": 300
+    }
+   },
+   "price": null,
+   "example": true
+  },
+  "ex-h4": {
+   "ticker": "APP",
+   "at": "2025-06-10",
+   "ts": 0,
+   "kind": "THESIS",
+   "title": "Bought APP at $313",
+   "note": "Review for sale at $500.",
+   "changes": [],
+   "snapshot": {
+    "thesisStatus": "INTACT",
+    "conviction": "HIGH",
+    "classifications": [
+     "CORE COMPOUNDER",
+     "SECULAR GROWTH"
+    ],
+    "thesis": {
+     "summary": "AI-driven ad engine (AXON) compounding at high incremental margins, with e-commerce advertisers extending growth beyond mobile gaming.",
+     "whyOwn": "AI ad engine / e-commerce expansion / high-margin FCF",
+     "holdingPeriod": "3\u20135 years",
+     "expRevGrowth": ">25% a year",
+     "expEarnGrowth": "EPS growing faster than revenue on operating leverage",
+     "catalysts": "E-commerce self-serve launch; S&P 500 inclusion; buybacks",
+     "expValuation": "25\u201330x forward FCF",
+     "v1y": 420,
+     "v3y": 700,
+     "v5y": 950,
+     "bull": "$1,200: e-commerce becomes as large as gaming",
+     "base": "$950: 25% EPS CAGR",
+     "bear": "$180: ad-tech regulation or a platform policy change",
+     "expectedReturn": "About 25% a year",
+     "wrongReason": "Platform dependence on app stores; regulatory scrutiny of ad targeting.",
+     "sellReason": "Revenue growth below 20%, or valuation above 40x forward FCF without estimate upgrades.",
+     "intendedSell": "Review at $500."
+    },
+    "plan": {
+     "addBelow": 290,
+     "strongBuy": 250,
+     "reviewPrice": 500,
+     "originalTarget": 500,
+     "targetWeight": 15,
+     "maxWeight": 25,
+     "nextReview": "2027-02-15"
+    },
+    "model": {
+     "fairValue": 400,
+     "v3y": 700,
+     "v5y": 950
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 25
+     },
+     {
+      "id": "e2",
+      "label": "EPS estimates rising",
+      "metric": "epsEstChg",
+      "op": ">",
+      "value": 0
+     },
+     {
+      "id": "e3",
+      "label": "Gross margin stays high",
+      "metric": "grossMargin",
+      "op": ">",
+      "value": 70
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "VALUATION",
+      "label": "Reduce if valuation exceeds 40x forward FCF",
+      "metric": "fwdFcfMult",
+      "op": ">",
+      "value": 40,
+      "action": "TRIM"
+     },
+     {
+      "id": "c2",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "APP revenue growth falls below 20%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c3",
+      "type": "exit",
+      "category": "VALUATION",
+      "label": "APP reaches $500 without corresponding earnings upgrades",
+      "metric": "price",
+      "op": ">=",
+      "value": 500,
+      "and": {
+       "metric": "epsEstChg",
+       "op": "<",
+       "value": 10
+      },
+      "action": "TRIM"
+     }
+    ],
+    "baseline": {
+     "date": "2025-06-10",
+     "price": 313,
+     "revEst": 5600,
+     "epsEst": 9.8,
+     "analystTarget": 420,
+     "shares": 340
+    }
+   },
+   "price": 313,
+   "example": true
+  },
+  "ex-h5": {
+   "ticker": "APP",
+   "at": "2026-05-08",
+   "ts": 0,
+   "kind": "REVISION",
+   "title": "Q1 beat; e-commerce ramp ahead of plan",
+   "note": "Raised fair value and the 3Y model; kept the $500 review price.",
+   "changes": [
+    "Fair value $400 \u2192 $620",
+    "3Y model $700 \u2192 $780",
+    "5Y model $950 \u2192 $1,050",
+    "Thesis INTACT \u2192 STRENGTHENING"
+   ],
+   "snapshot": {
+    "thesisStatus": "STRENGTHENING",
+    "conviction": "HIGH",
+    "classifications": [
+     "CORE COMPOUNDER",
+     "SECULAR GROWTH"
+    ],
+    "thesis": {
+     "summary": "AI-driven ad engine (AXON) compounding at high incremental margins, with e-commerce advertisers extending growth beyond mobile gaming.",
+     "whyOwn": "AI ad engine / e-commerce expansion / high-margin FCF",
+     "holdingPeriod": "3\u20135 years",
+     "expRevGrowth": ">25% a year",
+     "expEarnGrowth": "EPS growing faster than revenue on operating leverage",
+     "catalysts": "E-commerce self-serve launch; S&P 500 inclusion; buybacks",
+     "expValuation": "25\u201330x forward FCF",
+     "v1y": 420,
+     "v3y": 700,
+     "v5y": 950,
+     "bull": "$1,200: e-commerce becomes as large as gaming",
+     "base": "$950: 25% EPS CAGR",
+     "bear": "$180: ad-tech regulation or a platform policy change",
+     "expectedReturn": "About 25% a year",
+     "wrongReason": "Platform dependence on app stores; regulatory scrutiny of ad targeting.",
+     "sellReason": "Revenue growth below 20%, or valuation above 40x forward FCF without estimate upgrades.",
+     "intendedSell": "Review at $500."
+    },
+    "plan": {
+     "addBelow": 290,
+     "strongBuy": 250,
+     "reviewPrice": 500,
+     "originalTarget": 500,
+     "targetWeight": 15,
+     "maxWeight": 25,
+     "nextReview": "2027-02-15"
+    },
+    "model": {
+     "fairValue": 620,
+     "v3y": 780,
+     "v5y": 1050
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 25
+     },
+     {
+      "id": "e2",
+      "label": "EPS estimates rising",
+      "metric": "epsEstChg",
+      "op": ">",
+      "value": 0
+     },
+     {
+      "id": "e3",
+      "label": "Gross margin stays high",
+      "metric": "grossMargin",
+      "op": ">",
+      "value": 70
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "VALUATION",
+      "label": "Reduce if valuation exceeds 40x forward FCF",
+      "metric": "fwdFcfMult",
+      "op": ">",
+      "value": 40,
+      "action": "TRIM"
+     },
+     {
+      "id": "c2",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "APP revenue growth falls below 20%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c3",
+      "type": "exit",
+      "category": "VALUATION",
+      "label": "APP reaches $500 without corresponding earnings upgrades",
+      "metric": "price",
+      "op": ">=",
+      "value": 500,
+      "and": {
+       "metric": "epsEstChg",
+       "op": "<",
+       "value": 10
+      },
+      "action": "TRIM"
+     }
+    ],
+    "baseline": {
+     "date": "2025-06-10",
+     "price": 313,
+     "revEst": 5600,
+     "epsEst": 9.8,
+     "analystTarget": 420,
+     "shares": 340
+    }
+   },
+   "price": null,
+   "example": true
+  },
+  "ex-h6": {
+   "ticker": "VOYG",
+   "at": "2025-09-12",
+   "ts": 0,
+   "kind": "THESIS",
+   "title": "Bought VOYG at $30.93",
+   "note": "Sell review if backlog falls by more than 20%.",
+   "changes": [],
+   "snapshot": {
+    "thesisStatus": "INTACT",
+    "conviction": "MEDIUM",
+    "classifications": [
+     "SPECULATIVE",
+     "THEMATIC"
+    ],
+    "thesis": {
+     "summary": "Commercial space station (Starlab) plus defense technology, with a growing contracted backlog that gives revenue visibility.",
+     "whyOwn": "Space infrastructure / defense backlog",
+     "holdingPeriod": "3\u20135 years",
+     "expRevGrowth": ">20% a year",
+     "catalysts": "Starlab milestones; NASA commercial LEO awards; defense contract wins",
+     "v1y": 38,
+     "v3y": 55,
+     "v5y": 80,
+     "base": "$80 if Starlab is funded and backlog converts",
+     "bear": "$10 if Starlab slips and backlog shrinks",
+     "wrongReason": "NASA budget cuts or Starlab delays could hollow out the backlog.",
+     "sellReason": "Backlog falls by more than 20%.",
+     "intendedSell": "Review at $60."
+    },
+    "plan": {
+     "addBelow": 20,
+     "reviewPrice": 60,
+     "originalTarget": 60,
+     "targetWeight": 4,
+     "maxWeight": 8
+    },
+    "model": {
+     "fairValue": 40,
+     "v3y": 55,
+     "v5y": 80
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 20
+     },
+     {
+      "id": "e2",
+      "label": "Backlog growing",
+      "metric": "backlogChg",
+      "op": ">",
+      "value": 0
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "VOYG backlog falls by more than 20%",
+      "metric": "backlogChg",
+      "op": "<",
+      "value": -20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c2",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "VOYG revenue growth falls below 10%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 10,
+      "action": "REVIEW"
+     }
+    ],
+    "baseline": {
+     "date": "2025-09-12",
+     "price": 30.93,
+     "revEst": 180,
+     "backlog": 310,
+     "shares": 57
+    }
+   },
+   "price": 30.93,
+   "example": true
+  },
+  "ex-h7": {
+   "ticker": "VOYG",
+   "at": "2026-08-14",
+   "ts": 0,
+   "kind": "EARNINGS",
+   "title": "Backlog fell 24%; guidance cut",
+   "note": "Thesis downgraded to WEAKENING. Decide after reviewing the NASA award timeline.",
+   "changes": [
+    "Fair value $40 \u2192 $28",
+    "Thesis INTACT \u2192 WEAKENING"
+   ],
+   "snapshot": {
+    "thesisStatus": "WEAKENING",
+    "conviction": "MEDIUM",
+    "classifications": [
+     "SPECULATIVE",
+     "THEMATIC"
+    ],
+    "thesis": {
+     "summary": "Commercial space station (Starlab) plus defense technology, with a growing contracted backlog that gives revenue visibility.",
+     "whyOwn": "Space infrastructure / defense backlog",
+     "holdingPeriod": "3\u20135 years",
+     "expRevGrowth": ">20% a year",
+     "catalysts": "Starlab milestones; NASA commercial LEO awards; defense contract wins",
+     "v1y": 38,
+     "v3y": 55,
+     "v5y": 80,
+     "base": "$80 if Starlab is funded and backlog converts",
+     "bear": "$10 if Starlab slips and backlog shrinks",
+     "wrongReason": "NASA budget cuts or Starlab delays could hollow out the backlog.",
+     "sellReason": "Backlog falls by more than 20%.",
+     "intendedSell": "Review at $60."
+    },
+    "plan": {
+     "addBelow": 20,
+     "reviewPrice": 60,
+     "originalTarget": 60,
+     "targetWeight": 4,
+     "maxWeight": 8
+    },
+    "model": {
+     "fairValue": 28,
+     "v3y": 55,
+     "v5y": 80
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">",
+      "value": 20
+     },
+     {
+      "id": "e2",
+      "label": "Backlog growing",
+      "metric": "backlogChg",
+      "op": ">",
+      "value": 0
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "VOYG backlog falls by more than 20%",
+      "metric": "backlogChg",
+      "op": "<",
+      "value": -20,
+      "action": "REVIEW"
+     },
+     {
+      "id": "c2",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "VOYG revenue growth falls below 10%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 10,
+      "action": "REVIEW"
+     }
+    ],
+    "baseline": {
+     "date": "2025-09-12",
+     "price": 30.93,
+     "revEst": 180,
+     "backlog": 310,
+     "shares": 57
+    }
+   },
+   "price": null,
+   "example": true
+  },
+  "ex-h8": {
+   "ticker": "MSFT",
+   "at": "2025-08-01",
+   "ts": 0,
+   "kind": "THESIS",
+   "title": "Bought MSFT at $410",
+   "note": "",
+   "changes": [],
+   "snapshot": {
+    "thesisStatus": "INTACT",
+    "conviction": "HIGH",
+    "classifications": [
+     "CORE COMPOUNDER"
+    ],
+    "thesis": {
+     "summary": "Azure plus Copilot monetise AI across the largest enterprise installed base; durable double-digit earnings growth with low risk.",
+     "whyOwn": "Enterprise AI + Azure + durable compounding",
+     "holdingPeriod": "10 years",
+     "expRevGrowth": "12\u201315% a year",
+     "expEarnGrowth": "Mid-teens EPS growth",
+     "v3y": 680,
+     "v5y": 850,
+     "wrongReason": "AI capex does not earn its cost of capital.",
+     "sellReason": "Azure growth below 15% for two quarters."
+    },
+    "plan": {
+     "addBelow": 450,
+     "strongBuy": 400,
+     "reviewPrice": 650,
+     "originalTarget": 650,
+     "targetWeight": 15,
+     "maxWeight": 20
+    },
+    "model": {
+     "fairValue": 560,
+     "v3y": 680,
+     "v5y": 850
+    },
+    "expectations": [
+     {
+      "id": "e1",
+      "label": "Revenue growth",
+      "metric": "revGrowth",
+      "op": ">=",
+      "value": 12
+     }
+    ],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "FAILURE",
+      "label": "MSFT revenue growth falls below 10%",
+      "metric": "revGrowth",
+      "op": "<",
+      "value": 10,
+      "action": "REVIEW"
+     }
+    ],
+    "baseline": {
+     "date": "2025-08-01",
+     "price": 410,
+     "revEst": 318000,
+     "epsEst": 15.2,
+     "analystTarget": 520,
+     "shares": 7430
+    }
+   },
+   "price": 410,
+   "example": true
+  },
+  "ex-h9": {
+   "ticker": "SPUS",
+   "at": "2025-01-05",
+   "ts": 0,
+   "kind": "THESIS",
+   "title": "Started core SPUS position",
+   "note": "Default destination for monthly contributions.",
+   "changes": [],
+   "snapshot": {
+    "thesisStatus": "INTACT",
+    "conviction": "HIGH",
+    "classifications": [
+     "CORE COMPOUNDER"
+    ],
+    "thesis": {
+     "summary": "Sharia-compliant core exposure to US large caps; the default home for monthly contributions when no single stock meets its buy conditions.",
+     "whyOwn": "Core index exposure / default for new money",
+     "holdingPeriod": "Indefinite",
+     "expectedReturn": "8\u201310% a year",
+     "v3y": 65.3,
+     "v5y": 79,
+     "sellReason": "Only for rebalancing or liquidity."
+    },
+    "plan": {
+     "targetWeight": 25,
+     "maxWeight": 35,
+     "minCagr": 6,
+     "hurdle": 8
+    },
+    "model": {
+     "fairValue": 49,
+     "v3y": 65.3,
+     "v5y": 79
+    },
+    "expectations": [],
+    "conditions": [
+     {
+      "id": "c1",
+      "type": "exit",
+      "category": "LIQUIDITY",
+      "label": "Personal liquidity need flagged",
+      "metric": "custom:liquidity_need",
+      "op": ">=",
+      "value": 1,
+      "action": "TRIM"
+     }
+    ],
+    "baseline": {
+     "date": "2025-01-05",
+     "price": 42.0
+    }
+   },
+   "price": 42,
+   "example": true
+  },
+  "ex-h10": {
+   "ticker": "RKLB",
+   "at": "2025-10-02",
+   "ts": 0,
+   "kind": "BUY",
+   "title": "Bought 60 at $38.50",
+   "note": "No thesis written at the time.",
+   "changes": [],
+   "snapshot": {},
+   "price": 38.5,
+   "example": true
+  },
+  "ex-h11": {
+   "ticker": "APLD",
+   "at": "2026-03-25",
+   "ts": 0,
+   "kind": "WATCH",
+   "title": "Added to watchlist at $26.89; buy below $23",
+   "note": "AI data-center infrastructure; waiting for a margin of safety.",
+   "changes": [],
+   "snapshot": {},
+   "price": null,
+   "example": true
+  },
+  "ex-h12": {
+   "ticker": "SOFI",
+   "at": "2025-03-10",
+   "ts": 0,
+   "kind": "CLOSE",
+   "title": "Position closed: GOOD DECISION / GOOD OUTCOME",
+   "note": "Sold at my first target while estimates were still rising.",
+   "changes": [
+    "Mistake: SOLD WINNER TOO EARLY"
+   ],
+   "snapshot": {},
+   "price": null,
+   "example": true
+  },
+  "ex-h13": {
+   "ticker": "LCID",
+   "at": "2025-06-15",
+   "ts": 0,
+   "kind": "CLOSE",
+   "title": "Position closed: BAD DECISION / BAD OUTCOME",
+   "note": "Held for a recovery after the thesis had broken.",
+   "changes": [
+    "Mistake: HELD BROKEN THESIS",
+    "Mistake: AVERAGED DOWN WITHOUT THESIS",
+    "Mistake: ANCHORING TO PURCHASE PRICE"
+   ],
+   "snapshot": {},
+   "price": null,
+   "example": true
+  }
+ },
+ "closed": {
+  "SOFI-2025-03-10": {
+   "ticker": "SOFI",
+   "company": "SoFi Technologies",
+   "buyDate": "2024-11-01",
+   "avgBuy": 9.8,
+   "sellDate": "2025-03-10",
+   "avgSell": 14.2,
+   "shares": 200,
+   "returnPct": 44.9,
+   "annPct": 184.6,
+   "benchReturnPct": 3.1,
+   "alpha": 41.8,
+   "thesisCorrect": "YES",
+   "process": {
+    "thesis": true,
+    "sized": true,
+    "followedPlan": false,
+    "reasoning": true
+   },
+   "decision": "GOOD",
+   "outcome": "GOOD",
+   "quality": "GOOD DECISION / GOOD OUTCOME",
+   "mistakes": [
+    "SOLD WINNER TOO EARLY"
+   ],
+   "successes": "Bought when the bank charter was misunderstood by the market.",
+   "lessons": "Sold at my first target even though members and estimates kept rising. Reassess intrinsic value before selling at a target.",
+   "thesisSummary": "Bank charter + member growth drive operating leverage",
+   "example": true
+  },
+  "LCID-2025-06-15": {
+   "ticker": "LCID",
+   "company": "Lucid Group",
+   "buyDate": "2024-05-01",
+   "avgBuy": 3.1,
+   "sellDate": "2025-06-15",
+   "avgSell": 2.3,
+   "shares": 600,
+   "returnPct": -25.8,
+   "annPct": -23.6,
+   "benchReturnPct": 12.4,
+   "alpha": -38.2,
+   "thesisCorrect": "NO",
+   "process": {
+    "thesis": false,
+    "sized": false,
+    "followedPlan": false,
+    "reasoning": false
+   },
+   "decision": "BAD",
+   "outcome": "BAD",
+   "quality": "BAD DECISION / BAD OUTCOME",
+   "mistakes": [
+    "HELD BROKEN THESIS",
+    "AVERAGED DOWN WITHOUT THESIS",
+    "ANCHORING TO PURCHASE PRICE"
+   ],
+   "lessons": "Doubled the position after production guidance was cut, then held hoping to get back to my cost. Write down the sell condition before buying.",
+   "thesisSummary": "EV luxury turnaround",
+   "example": true
+  }
+ },
+ "alertState": {}
+}
