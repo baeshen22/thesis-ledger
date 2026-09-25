@@ -94,3 +94,12 @@ language sql security definer set search_path = public stable as $$
 $$;
 revoke all on function public.tl_tracked_symbols() from public, anon, authenticated;
 grant execute on function public.tl_tracked_symbols() to service_role;
+
+-- ---------------------------------------------------------------------------
+-- Explicit privileges (needed when "Automatically expose new tables" is off).
+-- Row-level security above still limits each user to their own rows.
+-- ---------------------------------------------------------------------------
+grant usage on schema public to anon, authenticated, service_role;
+grant select, insert, update, delete on public.docs to authenticated;
+grant select on public.quotes, public.market_data to authenticated;
+grant all on public.docs, public.quotes, public.market_data, public.ai_usage to service_role;
