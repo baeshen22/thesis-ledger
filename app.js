@@ -1549,7 +1549,9 @@ document.addEventListener('click', e => {
     case 'ask': ask(t, el.dataset.q); break;
     case 'guest': try { localStorage.setItem('tl-guest', 'true'); } catch(e){} startLocal(); break;
     case 'to-auth': closeModal(); try { localStorage.removeItem('tl-guest'); } catch(e){} user = null; clearState(); mode = 'auth'; render(); break;
-    case 'auth-back': auth.step = 'email'; auth.msg = ''; render(); break;
+    case 'auth-back': case 'auth-step': auth.step = el.dataset.v || 'email'; auth.msg = ''; render(); break;
+    case 'auth-forgot': authSideAction('forgot'); break;
+    case 'auth-otp': authSideAction('otp'); break;
     case 'load-examples': closeModal(); run(loadExamples()); break;
     case 'import-guest': run(importGuest()); break;
     case 'dismiss-import': ui.offerImport = false; render(); break;
@@ -1598,44 +1600,88 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#modal
 /* Boot                                                                */
 /* ------------------------------------------------------------------ */
 function renderAuth(){
-  const codeStep = auth.step === 'code';
+  const s = auth.step;
+  const pwField = (id, ac, ph) => '<label class="fld"><span>Password</span><input id="' + id + '" type="password" autocomplete="' + ac + '" minlength="8" placeholder="' + ph + '"></label>';
+  const emailField = '<label class="fld"><span>Email</span><input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" value="' + esc(auth.email) + '"></label>';
+  const btn = (label, busyLabel) => '<button class="btn pri" type="submit"' + (auth.busy ? ' disabled' : '') + '>' + (auth.busy ? busyLabel : label) + '</button>';
+  let form;
+  if (s === 'signup') form = emailField + pwField('auth-pw', 'new-password', 'At least 8 characters') + btn('Create account', 'Creating…') +
+      '<button class="btn ghost" type="button" data-act="auth-step" data-v="email">I already have an account</button>';
+  else if (s === 'confirm') form = '<p class="auth-lead" style="font-size:15px">Check your email.</p><p class="fhint">We sent a confirmation link to <strong>' + esc(auth.email) + '</strong>. Tap it (it may open in Safari; that is fine), then come back here and sign in with your password.</p>' +
+      '<button class="btn pri" type="button" data-act="auth-step" data-v="email">Back to sign in</button>';
+  else if (s === 'reset-sent') form = '<p class="fhint">If an account exists for <strong>' + esc(auth.email) + '</strong>, a reset link is on its way. Open it, choose a new password, then sign in here.</p><button class="btn pri" type="button" data-act="auth-step" data-v="email">Back to sign in</button>';
+  else if (s === 'newpw') form = pwField('auth-pw', 'new-password', 'New password, at least 8 characters') + btn('Save new password', 'Saving…');
+  else if (s === 'code') form = '<label class="fld"><span>Enter the code sent to ' + esc(auth.email) + '</span><input id="auth-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"></label>' +
+      btn('Sign in', 'Checking…') + '<button class="btn ghost" type="button" data-act="auth-step" data-v="email">Back</button><p class="fhint">You can also tap the link in the email.</p>';
+  else form = emailField + pwField('auth-pw', 'current-password', 'Your password') + btn('Sign in', 'Signing in…') +
+      '<button class="btn" type="button" data-act="auth-step" data-v="signup">Create a free account</button>' +
+      '<div class="btns" style="justify-content:space-between"><button class="btn ghost sm" type="button" data-act="auth-forgot">Forgot password?</button><button class="btn ghost sm" type="button" data-act="auth-otp">Email me a sign-in link instead</button></div>';
   return '<div class="auth"><div class="auth-card">' +
     '<div class="brand" style="font-size:22px"><span class="mark" aria-hidden="true"></span>Thesis Ledger</div>' +
-    '<p class="auth-lead">Remember why you bought every position, what would make you sell, and whether that reason is still true.</p>' +
-    '<ul class="auth-points"><li>Every buy tied to a written thesis and exit plan</li><li>Alerts only when a thesis, price or size condition is met</li><li>A price target reached is reviewed, never sold automatically</li></ul>' +
-    '<form id="authform" class="auth-form" novalidate>' +
-      (codeStep
-        ? '<label class="fld"><span>Enter the 6-digit code sent to ' + esc(auth.email) + '</span><input id="auth-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"></label>' +
-          '<button class="btn pri" type="submit"' + (auth.busy ? ' disabled' : '') + '>' + (auth.busy ? 'Checking…' : 'Sign in') + '</button>' +
-          '<button class="btn ghost" type="button" data-act="auth-back">Use a different email</button>' +
-          '<p class="fhint">You can also open the link in the email on this device.</p>'
-        : '<label class="fld"><span>Email</span><input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" value="' + esc(auth.email) + '"></label>' +
-          '<button class="btn pri" type="submit"' + (auth.busy ? ' disabled' : '') + '>' + (auth.busy ? 'Sending…' : 'Email me a sign-in code') + '</button>' +
-          '<p class="fhint">No password. New here? The same code creates your account. Your portfolio is private to you.</p>') +
-      '<p class="err" role="alert">' + esc(auth.msg) + '</p>' +
-    '</form>' +
-    '<div class="auth-alt"><button class="btn ghost" data-act="guest">Try it without an account</button><span class="fhint">Data stays on this device only.</span></div>' +
+    (s === 'email' || s === 'signup' ? '<p class="auth-lead">Remember why you bought every position, what would make you sell, and whether that reason is still true.</p>' +
+      '<ul class="auth-points"><li>Every buy tied to a written thesis and exit plan</li><li>Alerts only when a thesis, price or size condition is met</li><li>A price target reached is reviewed, never sold automatically</li></ul>' : '') +
+    '<form id="authform" class="auth-form" novalidate data-step="' + s + '">' + form + '<p class="err" role="alert">' + esc(auth.msg) + '</p></form>' +
+    (s === 'email' || s === 'signup' ? '<div class="auth-alt"><button class="btn ghost" data-act="guest">Try it without an account</button><span class="fhint">Data stays on this device only.</span></div>' : '') +
   '</div></div>';
 }
+function authError(error){
+  const m = (error && error.message) || 'Could not reach the server.';
+  if (/Invalid login credentials/i.test(m)) return 'Wrong email or password.';
+  if (/Email not confirmed/i.test(m)) return 'Confirm your email first: tap the link we sent you, then sign in.';
+  if (/already registered|already been registered/i.test(m)) return 'That email already has an account. Sign in instead.';
+  if (/rate limit|too many/i.test(m)) return 'Too many emails sent. Wait a few minutes and try again.';
+  return m;
+}
+const validEmail = e => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
 async function submitAuth(){
   auth.msg = '';
-  if (auth.step === 'email') {
-    const email = ($('#auth-email').value || '').trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { auth.msg = 'Enter a valid email address.'; render(); return; }
-    auth.email = email; auth.busy = true; render();
-    const {error} = await sb.auth.signInWithOtp({email, options:{emailRedirectTo: location.origin + location.pathname}});
-    auth.busy = false;
-    if (error) auth.msg = error.message; else auth.step = 'code';
-    render(); const c = $('#auth-code'); if (c) c.focus();
-  } else {
+  const s = auth.step, emailEl = $('#auth-email'), pwEl = $('#auth-pw');
+  if (emailEl) auth.email = emailEl.value.trim();
+  const pw = pwEl ? pwEl.value : '';
+  const redirect = location.origin + location.pathname;
+  const busy = async fn => { auth.busy = true; render(); try { return await fn(); } finally { auth.busy = false; } };
+  if (s === 'email' || s === 'signup') {
+    if (!validEmail(auth.email)) { auth.msg = 'Enter a valid email address.'; render(); return; }
+    if (pw.length < 8) { auth.msg = 'The password needs at least 8 characters.'; render(); return; }
+    if (s === 'email') {
+      const {data, error} = await busy(() => sb.auth.signInWithPassword({email:auth.email, password:pw}));
+      if (error) { auth.msg = authError(error); render(); return; }
+      startCloud(data.user); return;
+    }
+    const {data, error} = await busy(() => sb.auth.signUp({email:auth.email, password:pw, options:{emailRedirectTo:redirect}}));
+    if (error) { auth.msg = authError(error); render(); return; }
+    if (data.session) { startCloud(data.user); return; }
+    if (data.user && (!data.user.identities || !data.user.identities.length)) { auth.step = 'email'; auth.msg = 'That email already has an account. Sign in instead.'; render(); return; }
+    auth.step = 'confirm'; render(); return;
+  }
+  if (s === 'newpw') {
+    if (pw.length < 8) { auth.msg = 'The password needs at least 8 characters.'; render(); return; }
+    const {error} = await busy(() => sb.auth.updateUser({password:pw}));
+    if (error) { auth.msg = authError(error); render(); return; }
+    auth.step = 'email'; toast('Password saved.');
+    const {data} = await sb.auth.getSession(); if (data.session) startCloud(data.session.user); else render();
+    return;
+  }
+  if (s === 'code') {
     const token = ($('#auth-code').value || '').replace(/\s/g, '');
     if (!token) { auth.msg = 'Enter the code from the email.'; render(); return; }
-    auth.busy = true; render();
-    const {data, error} = await sb.auth.verifyOtp({email:auth.email, token, type:'email'});
-    auth.busy = false;
-    if (error) { auth.msg = error.message.includes('expired') ? 'That code has expired or is wrong. Request a new one.' : error.message; render(); return; }
+    const {data, error} = await busy(() => sb.auth.verifyOtp({email:auth.email, token, type:'email'}));
+    if (error) { auth.msg = /expired|invalid/i.test(error.message) ? 'That code has expired or is wrong. Request a new one.' : authError(error); render(); return; }
     auth.step = 'email'; startCloud(data.user);
   }
+}
+async function authSideAction(kind){
+  const emailEl = $('#auth-email'); if (emailEl) auth.email = emailEl.value.trim();
+  auth.msg = '';
+  if (!validEmail(auth.email)) { auth.msg = 'Enter your email address first.'; render(); return; }
+  const redirect = location.origin + location.pathname;
+  auth.busy = true; render();
+  const {error} = kind === 'forgot'
+    ? await sb.auth.resetPasswordForEmail(auth.email, {redirectTo:redirect})
+    : await sb.auth.signInWithOtp({email:auth.email, options:{emailRedirectTo:redirect}});
+  auth.busy = false;
+  if (error) { auth.msg = authError(error); render(); return; }
+  auth.step = kind === 'forgot' ? 'reset-sent' : 'code'; render();
 }
 async function loadExamples(){
   try {
@@ -1791,100 +1837,6 @@ async function applyShot(){
 /* ------------------------------------------------------------------ */
 /* Boot                                                                */
 /* ------------------------------------------------------------------ */
-function renderAuth(){
-  const codeStep = auth.step === 'code';
-  return '<div class="auth"><div class="auth-card">' +
-    '<div class="brand" style="font-size:22px"><span class="mark" aria-hidden="true"></span>Thesis Ledger</div>' +
-    '<p class="auth-lead">Remember why you bought every position, what would make you sell, and whether that reason is still true.</p>' +
-    '<ul class="auth-points"><li>Every buy tied to a written thesis and exit plan</li><li>Alerts only when a thesis, price or size condition is met</li><li>A price target reached is reviewed, never sold automatically</li></ul>' +
-    '<form id="authform" class="auth-form" novalidate>' +
-      (codeStep
-        ? '<label class="fld"><span>Enter the 6-digit code sent to ' + esc(auth.email) + '</span><input id="auth-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"></label>' +
-          '<button class="btn pri" type="submit"' + (auth.busy ? ' disabled' : '') + '>' + (auth.busy ? 'Checking…' : 'Sign in') + '</button>' +
-          '<button class="btn ghost" type="button" data-act="auth-back">Use a different email</button>' +
-          '<p class="fhint">You can also open the link in the email on this device.</p>'
-        : '<label class="fld"><span>Email</span><input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" value="' + esc(auth.email) + '"></label>' +
-          '<button class="btn pri" type="submit"' + (auth.busy ? ' disabled' : '') + '>' + (auth.busy ? 'Sending…' : 'Email me a sign-in code') + '</button>' +
-          '<p class="fhint">No password. New here? The same code creates your account. Your portfolio is private to you.</p>') +
-      '<p class="err" role="alert">' + esc(auth.msg) + '</p>' +
-    '</form>' +
-    '<div class="auth-alt"><button class="btn ghost" data-act="guest">Try it without an account</button><span class="fhint">Data stays on this device only.</span></div>' +
-  '</div></div>';
-}
-async function submitAuth(){
-  auth.msg = '';
-  if (auth.step === 'email') {
-    const email = ($('#auth-email').value || '').trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { auth.msg = 'Enter a valid email address.'; render(); return; }
-    auth.email = email; auth.busy = true; render();
-    const {error} = await sb.auth.signInWithOtp({email, options:{emailRedirectTo: location.origin + location.pathname}});
-    auth.busy = false;
-    if (error) auth.msg = error.message; else auth.step = 'code';
-    render(); const c = $('#auth-code'); if (c) c.focus();
-  } else {
-    const token = ($('#auth-code').value || '').replace(/\s/g, '');
-    if (!token) { auth.msg = 'Enter the code from the email.'; render(); return; }
-    auth.busy = true; render();
-    const {data, error} = await sb.auth.verifyOtp({email:auth.email, token, type:'email'});
-    auth.busy = false;
-    if (error) { auth.msg = error.message.includes('expired') ? 'That code has expired or is wrong. Request a new one.' : error.message; render(); return; }
-    auth.step = 'email'; startCloud(data.user);
-  }
-}
-async function loadExamples(){
-  try {
-    const d = await (await fetch('examples.json', {cache:'no-cache'})).json();
-    for (const c of COLS) for (const [id, doc] of Object.entries(d[c] || {})) if (!S[c][id]) await store.set(c, id, doc);
-    toast('Example portfolio loaded. Remove it any time from the banner.');
-  } catch (e) { toast('Could not load the examples.'); }
-}
-function exportData(){
-  const blob = new Blob([JSON.stringify({app:'thesis-ledger', exportedAt:new Date().toISOString(), data:S}, null, 1)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'thesis-ledger-' + todayISO() + '.json';
-  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
-}
-async function importData(file){
-  try {
-    const j = JSON.parse(await file.text()), d = j.data || j; let n = 0;
-    for (const c of COLS) for (const [id, doc] of Object.entries(d[c] || {})) { if (doc && typeof doc === 'object') { await store.set(c, id, doc); n++; } }
-    closeModal(); toast(n + ' records imported');
-  } catch (e) { toast('That file is not a Thesis Ledger backup.'); }
-}
-async function deleteEverything(){
-  if (mode === 'cloud') {
-    try { await callFn('delete-account', {}); }
-    catch (e) {
-      const {error} = await sb.from('docs').delete().eq('user_id', user.id);
-      if (error) { toast('Could not delete: ' + error.message); return; }
-    }
-    outbox = []; saveOutbox(); toast('Your data was deleted.'); await signOut(); return;
-  }
-  try { localStorage.removeItem(GUEST_KEY); } catch(e){}
-  clearState(); closeModal(); render(); toast('Data on this device was deleted.');
-}
-async function refreshQuotes(btn){
-  const syms = [...new Set([...G.pos.map(m => m.t), ...G.watch.map(m => m.t)])];
-  if (!syms.length) return;
-  if (btn) { btn.disabled = true; btn.textContent = 'Refreshing…'; }
-  try {
-    const r = await callFn('quotes', {symbols:syms});
-    let n = 0;
-    for (const [t, q] of Object.entries(r.quotes || {})) {
-      if (!q || !(q.price > 0)) continue;
-      const col = G.pos.some(m => m.t === t) ? 'positions' : 'watchlist';
-      const old = S[col][t] || {ticker:t};
-      if (old.price === q.price && old.prevClose === q.prevClose) continue;
-      await store.set(col, t, Object.assign({}, old, {price:q.price, prevClose:q.prevClose ?? old.prevClose ?? null, priceAt:todayISO()})); n++;
-    }
-    const miss = syms.filter(s => !(r.quotes || {})[s]);
-    toast(n + ' prices refreshed' + (miss.length ? '. Update manually: ' + miss.join(', ') : ''));
-  } catch (e) { toast(e.code === 'not_configured' ? 'Live prices are not set up on this server. Use Update prices.' : e.code === 'offline' ? 'You are offline.' : 'Could not refresh prices.'); }
-  if (btn) { btn.disabled = false; btn.textContent = 'Refresh prices'; }
-}
-
-/* ------------------------------------------------------------------ */
-/* Boot                                                                */
-/* ------------------------------------------------------------------ */
 async function init(){
   window.addEventListener('online', flush);
   setInterval(flush, 30000);
@@ -1900,6 +1852,8 @@ async function init(){
   if (!cloudReady) { startLocal(); return; }
   sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, {auth:{persistSession:true, autoRefreshToken:true, detectSessionInUrl:true}});
   sb.auth.onAuthStateChange((ev, session) => {
+    if (ev === 'PASSWORD_RECOVERY') { mode = 'auth'; auth.step = 'newpw'; auth.msg = ''; render(); return; }
+    if (auth.step === 'newpw') return;
     if (session && session.user && (ev === 'SIGNED_IN' || ev === 'INITIAL_SESSION')) startCloud(session.user);
     if (ev === 'SIGNED_OUT' && mode === 'cloud') { user = null; clearState(); mode = 'auth'; render(); }
   });
